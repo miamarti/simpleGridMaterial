@@ -37,11 +37,7 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
          */
         previous: function() {
           this.page--;
-          this.fnEvent({
-            status: 'previous',
-            page: this.page,
-            length: this.selectLength
-          });
+          this.runFnEvent('previous');
         },
 
         /**
@@ -49,10 +45,22 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
          */
         next: function() {
           this.page++;
+          this.runFnEvent('next');
+        },
+
+        /**
+         * [Run Fn Event]
+         */
+        runFnEvent: function(event) {
+          var sortableMap = {};
+          for (var key in this.sortableMap) {
+            sortableMap[this.getCamelCase(key)] = this.sortableMap[key] ? 'desc' : 'asc';
+          }
           this.fnEvent({
-            status: 'next',
+            status: event,
             page: this.page,
-            length: this.selectLength
+            length: this.selectLength,
+            sortableMap: sortableMap
           });
         },
 
@@ -60,11 +68,7 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
          * [setSelectLength]
          */
         setSelectLength: function() {
-          this.fnEvent({
-            status: 'change-length',
-            page: this.page,
-            length: this.selectLength
-          });
+          this.runFnEvent('change-length');
         },
 
         /**
@@ -94,16 +98,7 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
           } else {
             this.sortableMap[column] = this.sortableMap[column] === undefined ? true : !this.sortableMap[column];
           }
-          var sortableMap = {};
-          for (var key in this.sortableMap) {
-            sortableMap[this.getCamelCase(key)] = this.sortableMap[key] ? 'desc' : 'asc';
-          }
-          this.fnEvent({
-            status: 'sortable',
-            page: this.page,
-            length: this.selectLength,
-            sortableMap: sortableMap
-          });
+          this.runFnEvent('sortable');
         }
       };
 
