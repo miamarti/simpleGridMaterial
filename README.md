@@ -1,4 +1,7 @@
 # See how simple =)
+
+![IMG](https://miamarti.github.io/simpleGridMaterial/assets/img.png)
+
 Grid Component for Angular Material
 
 <p>
