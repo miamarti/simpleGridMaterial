@@ -1,0 +1,26 @@
+{
+  "name": "simpleGridMaterial",
+  "version": "1.0.0",
+  "description": "Simple Grid Angular Material",
+  "main": "index.js",
+  "author": "Miller Augusto S. Martins <miller.augusto@gmail.com>",
+  "contributors": [],
+  "dependencies": {
+    "angular": "1.5.x",
+    "angular-material": "1.0.x",
+  },
+  "engines": {
+    "node": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miamarti/simpleGridMaterial.git"
+  },
+  "keywords": [
+    "Grid",
+    "Material",
+    "Angular"
+  ],
+  "license": "MIT",
+  "homepage": "http://miamarti.github.io/simpleGridMaterial/"
+}
