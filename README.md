@@ -33,7 +33,7 @@ require('angular');
 angular.module('Requisition', [
   require('angular-animate'),
   require('angular-material'),
-  require('simple-grid-material')
+  require('simple-grid-material') // Component Injection
 ])
 ```
 
