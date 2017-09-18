@@ -16,6 +16,8 @@ Grid Component for Angular Material
   <a href="http://waffle.io/miamarti/simpleGridMaterial"><img alt='Stories in Ready' src='https://badge.waffle.io/miamarti/simpleGridMaterial.svg?label=ready&title=Ready' height="21" /></a>
 </p>
 
+[on npm](https://www.npmjs.com/package/simple-grid-material)
+
 ### Dependencies
 Download make the dependencies of simpleGridMaterial and include in your project
 * https://angularjs.org/
