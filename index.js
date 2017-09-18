@@ -1,4 +1,5 @@
 var moduleName = 'ngSimpleGrid';
+
 angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
 
   'ngInject';
