@@ -1,4 +1,6 @@
 # simpleGridMaterial
+
+[![Join the chat at https://gitter.im/simpleGridMaterial/Lobby](https://badges.gitter.im/simpleGridMaterial/Lobby.svg)](https://gitter.im/simpleGridMaterial/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Angular Simple Grid Material
 
 <p>
