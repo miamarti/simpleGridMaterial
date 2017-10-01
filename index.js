@@ -22,7 +22,8 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
         var _len = (dataLength ? 
                     dataLength.split(',') : 
                     ($scope.ngDataList ? $scope.ngDataList.length : 0));
-        var length = [].map.call(, function(line) {
+        
+        var length = [].map.call(_len, function(line) {
           return {value: line.trim(), label: line.trim()};
         });
 
