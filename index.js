@@ -19,7 +19,7 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
     link: function($scope, elmt) {
 
       var Pagination = function(dataLength, fnEvent) {
-        var length = [].map.call(dataLength.split(','), function(line) {
+        var length = [].map.call((dataLength ? dataLength.split(',') : []), function(line) {
           return {value: line.trim(), label: line.trim()};
         });
 
