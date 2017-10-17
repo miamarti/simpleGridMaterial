@@ -19,17 +19,23 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
     link: function($scope, elmt) {
 
       var Pagination = function(dataLength, fnEvent) {
-        var length = [].map.call(dataLength.split(','), function(line) {
+        var _len = (dataLength ? 
+                    dataLength.split(',') : 
+                    ($scope.ngDataList ? $scope.ngDataList.length : 0));
+        
+        var length = [].map.call(_len, function(line) {
           return {value: line.trim(), label: line.trim()};
         });
 
         this.fnEvent = fnEvent;
         this.length = length;
-        this.selectLength = length[0].value;
+        this.selectLength = length && length.length >0 ? 
+                            length[0].value: 
+                            ($scope.ngDataList ? $scope.ngDataList.length : 0);
         this.page = 0;
         this.sortableMap = {};
       };
-
+  
       Pagination.prototype = {
 
         /**
