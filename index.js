@@ -19,23 +19,23 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
     link: function($scope, elmt) {
 
       var Pagination = function(dataLength, fnEvent) {
-        var _len = (dataLength ? 
-                    dataLength.split(',') : 
+        var _len = (dataLength ?
+                    dataLength.split(',') :
                     ($scope.ngDataList ? $scope.ngDataList.length : 0));
-        
+
         var length = [].map.call(_len, function(line) {
           return {value: line.trim(), label: line.trim()};
         });
 
         this.fnEvent = fnEvent;
         this.length = length;
-        this.selectLength = length && length.length >0 ? 
-                            length[0].value: 
+        this.selectLength = length && length.length >0 ?
+                            length[0].value:
                             ($scope.ngDataList ? $scope.ngDataList.length : 0);
         this.page = 0;
         this.sortableMap = {};
       };
-  
+
       Pagination.prototype = {
 
         /**
@@ -44,6 +44,7 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
         previous: function() {
           this.page--;
           this.runFnEvent('previous');
+          $scope.$ctrl.previous();
         },
 
         /**
@@ -52,6 +53,7 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
         next: function() {
           this.page++;
           this.runFnEvent('next');
+          $scope.$ctrl.next();
         },
 
         /**
@@ -62,12 +64,12 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
           for (var key in this.sortableMap) {
             sortableMap[this.getCamelCase(key)] = this.sortableMap[key] ? 'desc' : 'asc';
           }
-          this.fnEvent({
+          this.fnEvent = {
             status: event,
             page: this.page,
             length: this.selectLength,
             sortableMap: sortableMap
-          });
+          };
         },
 
         /**
@@ -75,6 +77,7 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
          */
         setSelectLength: function() {
           this.runFnEvent('change-length');
+          $scope.$ctrl.changePageSize(this.fnEvent.length);
         },
 
         /**
@@ -207,6 +210,7 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
          */
         setTemplate: function() {
           var template = '';
+          template += '<md-table-container>'
           template += '<table class="md-data-table ng-pristine ng-untouched ng-valid md-table ng-isolate-scope ng-not-empty" md-table md-progress="false" multiple="true" aria-invalid="false">';
           template += '  <thead ng-show="true" md-head class="md-head ng-isolate-scope">';
           template += '    <tr md-row class="md-row">';
@@ -217,8 +221,9 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
           template += '    ' + $this.getColumnsBody();
           template += '  </tbody>';
           template += '</table>';
+          template += '</md-table-container>'
 
-          template += '<div class="ng-scope md-table-pagination ng-isolate-scope" aria-hidden="false" style="" ng-if="ngDataPagination">';
+          template += '<div class="ng-scope md-table-pagination ng-isolate-scope simple-grid-pagination" aria-hidden="false" style="" ng-if="ngDataPagination">';
           template += '  <div class="limit-select ng-scope">';
           template += '    <div class="label ng-binding">Rows per page:</div>';
           template += '    <md-select class="md-table-select" ng-model="pagination.selectLength" ng-change="pagination.setSelectLength()">';
@@ -228,7 +233,6 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
           template += '    </md-select>';
           template += '  </div>';
           template += '  <div class="buttons">';
-          template += '    <div class="label ng-binding">1 - 25 of 26</div>';
           template += '    <button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Previous" ng-click="pagination.previous()" ng-disabled="!pagination.page">';
           template += '      <md-icon md-svg-icon="navigate-before.svg" class="ng-scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg></md-icon>';
           template += '    </button>';
