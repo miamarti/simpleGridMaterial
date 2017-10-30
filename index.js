@@ -14,6 +14,7 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
       ngDataPaginationEvents: '=ngDataPaginationEvents',
       ngDataLength: '@ngDataLength',
       ngDataSingleOrdering: '@ngDataSingleOrdering',
+      ngDataDefaultLength: '=ngDataDefaultLength',
       $ctrl: '=ngDataCtrl'
     },
     link: function($scope, elmt) {
@@ -32,6 +33,8 @@ angular.module(moduleName, ['ng']).directive('simpleGrid', function($compile) {
         this.selectLength = length && length.length >0 ?
                             length[0].value:
                             ($scope.ngDataList ? $scope.ngDataList.length : 0);
+        this.selectLength = $scope.ngDataDefaultLength && !Number.isNaN($scope.ngDataDefaultLength) ?
+          $scope.ngDataDefaultLength : this.selectLength;
         this.page = 0;
         this.sortableMap = {};
       };
