@@ -2,7 +2,7 @@
 Grid Component for Angular Material
 
 
-![IMG](https://miamarti.github.io/simpleGridMaterial/assets/app/img.png)
+![IMG](https://miamarti.github.io/simpleGridMaterial/app/assets/img.png)
 
 
 <p>
