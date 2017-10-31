@@ -1,16 +1,21 @@
 {
   "name": "simple-grid-material",
-  "version": "1.0.5",
+  "version": "1.1.5",
   "description": "Simple Grid Angular Material",
-  "main": "index.js",
+  "main": "dist/simple-grid-material.min.js",
   "author": "Miller Augusto S. Martins <miller.augusto@gmail.com>",
   "contributors": [],
   "dependencies": {
     "angular": "1.5.x",
-    "angular-material": "1.0.x"
+    "angular-material": "1.0.x",
+    "node-minify": "^2.4.0"
+  },
+  "scripts": {
+    "build": "node app/minify.js"
   },
   "engines": {
-    "node": "*"
+    "node": "*",
+    "node-minify": "2.4.x"
   },
   "repository": {
     "type": "git",

@@ -2,15 +2,15 @@
 Grid Component for Angular Material
 
 
-![IMG](https://miamarti.github.io/simpleGridMaterial/assets/img.png)
+![IMG](https://miamarti.github.io/simpleGridMaterial/assets/app/img.png)
 
 
 <p>
   <a href="https://gitter.im/miamarti/simpleGridMaterial?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge" target="_blank"><img src="https://badges.gitter.im/Join%20Chat.svg"></a>
   <a href="https://gitlab.com/miamarti/simpleGridMaterial" target="_blank"><img src="https://img.shields.io/badge/gitlab-simpleGridMaterial-yellow.svg"></a>
   <img src="https://img.shields.io/badge/simpleGridMaterial-release-green.svg">
-  <img src="https://img.shields.io/badge/version-1.0.5-blue.svg">
-  <img src="https://img.shields.io/bower/v/bootstrap.svg"> 
+  <img src="https://img.shields.io/badge/version-1.1.5-blue.svg">
+  <img src="https://img.shields.io/bower/v/bootstrap.svg">
   <img src="https://img.shields.io/github/license/mashape/apistatus.svg">
   <a href="https://github.com/miamarti/simpleGridMaterial/tarball/master"><img src="https://img.shields.io/github/downloads/atom/atom/latest/total.svg"></a>
   <a href="http://waffle.io/miamarti/simpleGridMaterial"><img alt='Stories in Ready' src='https://badge.waffle.io/miamarti/simpleGridMaterial.svg?label=ready&title=Ready' height="21" /></a>
@@ -41,16 +41,16 @@ angular.module('Requisition', [
 
 ## Implementation
 ```
-<simple-grid 
-  ng-data-list="listCtrl.myList" 
-  ng-data-click="listCtrl.clickPoc" 
-  ng-data-ctrl="listCtrl" 
-  ng-data-single-ordering="false" 
-  ng-data-pagination="true" 
-  ng-data-length="25, 50, 75, 100, 150, 250" 
-  ng-data-pagination-enabled="listCtrl.paginationEnabled" 
+<simple-grid
+  ng-data-list="listCtrl.myList"
+  ng-data-click="listCtrl.clickPoc"
+  ng-data-ctrl="listCtrl"
+  ng-data-single-ordering="false"
+  ng-data-pagination="true"
+  ng-data-length="25, 50, 75, 100, 150, 250"
+  ng-data-pagination-enabled="listCtrl.paginationEnabled"
   ng-data-pagination-events="listCtrl.paginationEvents">
-  
+
   <header>
     <column data-style="width: 14%;" data-sortable="true">Submission date</column>
     <column data-style="width: 14%;" data-sortable="true">Submission ID</column>
@@ -96,6 +96,11 @@ angular.module('Requisition', [
 | ng-data-pagination-enabled | Function | true | true | Function that returns a Boolean allowing pagination to work  |
 | ng-data-pagination-events  | Function | true | true | Function that runs whenever you scroll through pagination    |
 
+
+## Developer
+```
+$ npm run build
+```
 
 ## Metrics
 
