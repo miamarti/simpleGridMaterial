@@ -97,7 +97,7 @@ angular.module('Requisition', [
 | ng-data-pagination-events  | Function | true | true | Function that runs whenever you scroll through pagination    |
 
 
-## Developer
+## Development
 ```
 $ npm run build
 ```
