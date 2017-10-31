@@ -2,7 +2,7 @@ var compressor = require('node-minify');
 
 compressor.minify({
   compressor: 'uglifyjs',
-  input: './app/index.js',
-  output: './dist/simple-grid-material.min.js',
+  input: './app/ng-simple-grid.js',
+  output: './dist/ng-simple-grid.js',
   callback: function (err, min) {}
 });

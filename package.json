@@ -2,7 +2,7 @@
   "name": "simple-grid-material",
   "version": "1.1.5",
   "description": "Simple Grid Angular Material",
-  "main": "dist/simple-grid-material.min.js",
+  "main": "dist/index.js",
   "author": "Miller Augusto S. Martins <miller.augusto@gmail.com>",
   "contributors": [],
   "dependencies": {
