@@ -1,7 +1,7 @@
 (function(window, angular) {
   'use strict';
 
-  angular.module('ngSimpleGrid', ['ng']).directive('simpleGrid', function($compile) {
+  angular.module('ngSimpleGrid', ['ng']).directive('simpleGrid', ['$compile', function($compile) {
 
     'ngInject';
 
@@ -252,5 +252,5 @@
         $this.main();
       }
     };
-  });
+  }]);
 })(window, window.angular);
