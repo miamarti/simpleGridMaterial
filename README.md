@@ -98,6 +98,8 @@ angular.module('Requisition', [
 
 
 ## Development
+Edit `version.js` and run the command below:
+
 ```
 $ npm run build
 ```
