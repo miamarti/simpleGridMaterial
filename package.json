@@ -14,8 +14,7 @@
     "build": "node app/minify.js"
   },
   "engines": {
-    "node": "*",
-    "node-minify": "2.4.x"
+    "node": "*"
   },
   "repository": {
     "type": "git",
