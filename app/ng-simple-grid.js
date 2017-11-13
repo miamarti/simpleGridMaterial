@@ -200,7 +200,7 @@
            */
           getColumnsBody: function() {
             var line = '';
-            line += '<tr md-row md-select="item" class="md-row ng-scope ng-isolate-scope md-clickable" aria-disabled="false" ng-repeat="$line in ngDataList">';
+            line += '<tr md-row md-select="item" class="md-row ng-scope ng-isolate-scope md-clickable" aria-disabled="false" ng-repeat="$line in ngDataList" ng-if="!$line.deleted">';
             line += [].map.call(elmt[0].querySelectorAll('list column'), function(data) {
               var column = '<td md-cell class="md-cell ng-scope md-clickable" role="button" tabindex="0" ' + (!data.dataset.disabledClick ? 'ng-click="ngDataClick($index, $line)"' : '') + '>';
               column += data.dataset.bind ? '{{$line.' + data.dataset.bind + '}}' : data.innerHTML;
