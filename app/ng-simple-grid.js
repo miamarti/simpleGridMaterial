@@ -8,7 +8,7 @@
     return {
       restrict: 'E',
       replace: true,
-      transclude: true,
+      transclude: false,
       scope: {
         ngDataList: '=ngDataList',
         ngDataClick: '=ngDataClick',
@@ -164,8 +164,7 @@
            * @return {[type]}          [description]
            */
           render: function(template) {
-            elmt.append(template);
-            $compile(elmt.contents())($scope);
+            $compile(elmt.html(template).contents())($scope);
           },
 
           /**
