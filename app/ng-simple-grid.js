@@ -8,7 +8,7 @@
     return {
       restrict: 'E',
       replace: true,
-      transclude: false,
+      transclude: true,
       scope: {
         ngDataList: '=ngDataList',
         ngDataClick: '=ngDataClick',
@@ -20,6 +20,7 @@
         ngDataDefaultLength: '=ngDataDefaultLength',
         $ctrl: '=ngDataCtrl'
       },
+      template: '<ng-transclude></ng-transclude>',
       link: function($scope, elmt) {
 
         var Pagination = function(dataLength, fnEvent) {

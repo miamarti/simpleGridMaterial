@@ -9,7 +9,7 @@ Grid Component for Angular Material
   <a href="https://gitter.im/miamarti/simpleGridMaterial?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge" target="_blank"><img src="https://badges.gitter.im/Join%20Chat.svg"></a>
   <a href="https://gitlab.com/miamarti/simpleGridMaterial" target="_blank"><img src="https://img.shields.io/badge/gitlab-simpleGridMaterial-yellow.svg"></a>
   <img src="https://img.shields.io/badge/simpleGridMaterial-release-green.svg">
-  <img src="https://img.shields.io/badge/version-1.1.10-blue.svg">
+  <img src="https://img.shields.io/badge/version-1.1.11-blue.svg">
   <img src="https://img.shields.io/bower/v/bootstrap.svg">
   <img src="https://img.shields.io/github/license/mashape/apistatus.svg">
   <a href="https://github.com/miamarti/simpleGridMaterial/tarball/master"><img src="https://img.shields.io/github/downloads/atom/atom/latest/total.svg"></a>
