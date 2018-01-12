@@ -103,6 +103,8 @@ Also make sure to import the stylesheets within your application. You can use th
 | ng-data-pagination-enabled | Function | true | true | Function that returns a Boolean allowing pagination to work  |
 | ng-data-pagination-events  | Function | true | true | Function that runs whenever you scroll through pagination    |
 | ng-data-loading  | Boolean | true | false | Controls when to show and hide progress linear bar                     |
+| ng-data-empty-icon | String | false | false | Material icon font name to be displayed on no results page           |
+| ng-data-empty-text | String | false | false | Text to be displayed right below icon for no results page            |
 
 
 ## Development

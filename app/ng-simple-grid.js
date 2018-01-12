@@ -19,6 +19,8 @@
         ngDataSingleOrdering: '@ngDataSingleOrdering',
         ngDataDefaultLength: '=ngDataDefaultLength',
         ngDataLoading: '=ngDataLoading',
+        ngDataEmptyIcon: '@ngDataEmptyIcon',
+        ngDataEmptyText: '@ngDataEmptyText',
         $ctrl: '=ngDataCtrl'
       },
       template: '<ng-transclude></ng-transclude>',
@@ -218,7 +220,7 @@
            */
           setTemplate: function() {
             var template = '';
-            template += '<md-table-container>'
+            template += '<md-table-container ng-show="ngDataLoading || ngDataList.length">'
             template += '  <table class="md-data-table ng-pristine ng-untouched ng-valid md-table ng-isolate-scope ng-not-empty" multiple="true" aria-invalid="false">';
             template += '    <thead class="md-head ng-isolate-scope">';
             template += '      <tr class="md-row">';
@@ -238,7 +240,7 @@
             template += '  </table>';
             template += '</md-table-container>'
 
-            template += '<div class="ng-scope md-table-pagination ng-isolate-scope simple-grid-pagination" aria-hidden="false" ng-if="ngDataPagination">';
+            template += '<div class="ng-scope md-table-pagination ng-isolate-scope simple-grid-pagination" aria-hidden="false" ng-if="ngDataPagination" ng-show="ngDataLoading || ngDataList.length">';
             template += '  <div class="limit-select ng-scope">';
             template += '    <div class="label ng-binding">Rows per page:</div>';
             template += '    <md-select aria-label="rows per page selection" class="md-table-select" ng-model="pagination.selectLength" ng-change="pagination.setSelectLength()">';
@@ -255,6 +257,11 @@
             template += '      <md-icon>keyboard_arrow_right</md-icon>';
             template += '    </button>';
             template += '  </div>';
+            template += '</div>';
+
+            template += '<div class="md-no-results" layout="column" layout-align="center center" ng-show="!ngDataLoading && !ngDataList.length">';
+            template += '  <md-icon class="material-icons">{{ngDataEmptyIcon}}</md-icon>';
+            template += '  <p class="md-body-1">{{ngDataEmptyText}}</p>';
             template += '</div>';
             $this.render(template);
           }

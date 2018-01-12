@@ -87,6 +87,19 @@ table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+
   }
 }
 
+.md-no-results {
+  margin-bottom: 64px;
+  md-icon {
+    color: rgba(0, 0, 0, 0.46);
+    font-size: 64px;
+    height: 64px;
+    width: 64px;
+  }
+  p {
+    color: rgba(0, 0, 0, 0.67);
+  }
+}
+
 md-backdrop.md-edit-dialog-backdrop {
   z-index: 80;
 }
