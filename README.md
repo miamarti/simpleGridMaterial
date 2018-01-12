@@ -49,7 +49,8 @@ angular.module('Requisition', [
   ng-data-pagination="true"
   ng-data-length="25, 50, 75, 100, 150, 250"
   ng-data-pagination-enabled="listCtrl.paginationEnabled"
-  ng-data-pagination-events="listCtrl.paginationEvents">
+  ng-data-pagination-events="listCtrl.paginationEvents"
+  ng-data-loading="listCtrl.loading">
 
   <header>
     <column data-style="width: 14%;" data-sortable="true">Submission date</column>
@@ -101,6 +102,7 @@ Also make sure to import the stylesheets within your application. You can use th
 | ng-data-length          | String('25, 50, 75, 100, 150, 250') | false | false | Reports the number of records options |
 | ng-data-pagination-enabled | Function | true | true | Function that returns a Boolean allowing pagination to work  |
 | ng-data-pagination-events  | Function | true | true | Function that runs whenever you scroll through pagination    |
+| ng-data-loading  | Boolean | true | false | Controls when to show and hide progress linear bar                     |
 
 
 ## Development

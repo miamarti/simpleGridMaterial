@@ -18,6 +18,7 @@
         ngDataLength: '@ngDataLength',
         ngDataSingleOrdering: '@ngDataSingleOrdering',
         ngDataDefaultLength: '=ngDataDefaultLength',
+        ngDataLoading: '=ngDataLoading',
         $ctrl: '=ngDataCtrl'
       },
       template: '<ng-transclude></ng-transclude>',
@@ -222,6 +223,13 @@
             template += '    <thead class="md-head ng-isolate-scope">';
             template += '      <tr class="md-row">';
             template += '        ' + $this.getColumnsHeader();
+            template += '      </tr>';
+            template += '    </thead>';
+            template += '    <thead class="md-table-progress ng-isolate-scope">';
+            template += '      <tr>';
+            template += '        <th colspan="' + elmt[0].querySelectorAll('header column').length + '">';
+            template += '          <md-progress-linear md-mode="indeterminate" ng-show="ngDataLoading"></md-progress-linear>';
+            template += '        </th>';
             template += '      </tr>';
             template += '    </thead>';
             template += '    <tbody class="md-body">';
