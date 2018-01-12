@@ -479,5 +479,8 @@ table.md-table {
         transform: scaleY(0.4) scaleX(0.8);
       }
     }
+    abbr {
+      text-decoration: none;
+    }
   }
 }
