@@ -82,7 +82,11 @@ angular.module('Requisition', [
 
 </simple-grid>
 ```
-
+## Stylesheets
+Also make sure to import the stylesheets within your application. You can use the @import as this:
+```
+@import 'simple-grid-material/dist/ng-simple-grid.scss';
+```
 ## Parameters
 
 | Name          | Type          | Dinamic | Mandatory | Description                                                  |
