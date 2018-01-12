@@ -203,10 +203,11 @@
            */
           getColumnsBody: function() {
             var line = '';
-            line += '<tr md-select="item" class="md-row ng-scope ng-isolate-scope md-clickable" aria-disabled="false" ng-repeat="$line in ngDataList" ng-if="!$line.deleted">';
+            line += '<tr id="row{{$index}}" md-select="item" class="md-row ng-scope ng-isolate-scope md-clickable" aria-disabled="false" ng-repeat="$line in ngDataList" ng-if="!$line.deleted">';
             line += [].map.call(elmt[0].querySelectorAll('list column'), function(data) {
-              var column = '<td class="md-cell ng-scope md-clickable" role="button" tabindex="0" ' + (!data.dataset.disabledClick ? 'ng-click="ngDataClick($index, $line)"' : '') + '>';
-              column += data.dataset.bind ? '<abbr title="{{$line.' + data.dataset.bind + '}}">{{$line.' + data.dataset.bind + '}}</abbr>' : data.innerHTML;
+              var filter = data.dataset.filter ? ' | ' + data.dataset.filter : '';
+              var column = '<td id="row{{$index}}.' + data.dataset.bind + '" class="md-cell ng-scope md-clickable" role="button" tabindex="0" ' + (!data.dataset.disabledClick ? 'ng-click="ngDataClick($index, $line)"' : '') + '>';
+              column += data.dataset.bind ? '<abbr title="{{$line.' + data.dataset.bind + filter + '}}">{{$line.' + data.dataset.bind + filter + '}}</abbr>' : data.innerHTML;
               column += '</td>';
               return column;
             }).join('');
@@ -243,17 +244,17 @@
             template += '<div class="ng-scope md-table-pagination ng-isolate-scope simple-grid-pagination" aria-hidden="false" ng-if="ngDataPagination" ng-show="ngDataLoading || ngDataList.length">';
             template += '  <div class="limit-select ng-scope">';
             template += '    <div class="label ng-binding">Rows per page:</div>';
-            template += '    <md-select aria-label="rows per page selection" class="md-table-select" ng-model="pagination.selectLength" ng-change="pagination.setSelectLength()">';
-            template += '      <md-option id="{{opt.value}}-page" ng-repeat="opt in pagination.length" ng-value="opt.value">';
+            template += '    <md-select id="pages-select" aria-label="rows per page selection" class="md-table-select" ng-model="pagination.selectLength" ng-change="pagination.setSelectLength()">';
+            template += '      <md-option id="opt{{$index}}" ng-repeat="opt in pagination.length" ng-value="opt.value">';
             template += '        {{opt.label}}';
             template += '      </md-option>';
             template += '    </md-select>';
             template += '  </div>';
             template += '  <div class="buttons">';
-            template += '    <button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Previous" ng-click="pagination.previous()" ng-disabled="!pagination.page">';
+            template += '    <button id="previous-page" class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Previous" ng-click="pagination.previous()" ng-disabled="!pagination.page">';
             template += '      <md-icon>keyboard_arrow_left</md-icon>';
             template += '    </button>';
-            template += '    <button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Next" ng-click="pagination.next()" ng-disabled="!ngDataPaginationEnabled()">';
+            template += '    <button id="next-page" class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Next" ng-click="pagination.next()" ng-disabled="!ngDataPaginationEnabled()">';
             template += '      <md-icon>keyboard_arrow_right</md-icon>';
             template += '    </button>';
             template += '  </div>';
