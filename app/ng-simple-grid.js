@@ -18,6 +18,9 @@
         ngDataLength: '@ngDataLength',
         ngDataSingleOrdering: '@ngDataSingleOrdering',
         ngDataDefaultLength: '=ngDataDefaultLength',
+        ngDataLoading: '=ngDataLoading',
+        ngDataEmptyIcon: '@ngDataEmptyIcon',
+        ngDataEmptyText: '@ngDataEmptyText',
         $ctrl: '=ngDataCtrl'
       },
       template: '<ng-transclude></ng-transclude>',
@@ -203,7 +206,7 @@
             line += '<tr md-select="item" class="md-row ng-scope ng-isolate-scope md-clickable" aria-disabled="false" ng-repeat="$line in ngDataList" ng-if="!$line.deleted">';
             line += [].map.call(elmt[0].querySelectorAll('list column'), function(data) {
               var column = '<td class="md-cell ng-scope md-clickable" role="button" tabindex="0" ' + (!data.dataset.disabledClick ? 'ng-click="ngDataClick($index, $line)"' : '') + '>';
-              column += data.dataset.bind ? '{{$line.' + data.dataset.bind + '}}' : data.innerHTML;
+              column += data.dataset.bind ? '<abbr title="{{$line.' + data.dataset.bind + '}}">{{$line.' + data.dataset.bind + '}}</abbr>' : data.innerHTML;
               column += '</td>';
               return column;
             }).join('');
@@ -217,11 +220,18 @@
            */
           setTemplate: function() {
             var template = '';
-            template += '<md-table-container>'
+            template += '<md-table-container ng-show="ngDataLoading || ngDataList.length">'
             template += '  <table class="md-data-table ng-pristine ng-untouched ng-valid md-table ng-isolate-scope ng-not-empty" multiple="true" aria-invalid="false">';
             template += '    <thead class="md-head ng-isolate-scope">';
             template += '      <tr class="md-row">';
             template += '        ' + $this.getColumnsHeader();
+            template += '      </tr>';
+            template += '    </thead>';
+            template += '    <thead class="md-table-progress ng-isolate-scope">';
+            template += '      <tr>';
+            template += '        <th colspan="' + elmt[0].querySelectorAll('header column').length + '">';
+            template += '          <md-progress-linear md-mode="indeterminate" ng-show="ngDataLoading"></md-progress-linear>';
+            template += '        </th>';
             template += '      </tr>';
             template += '    </thead>';
             template += '    <tbody class="md-body">';
@@ -230,7 +240,7 @@
             template += '  </table>';
             template += '</md-table-container>'
 
-            template += '<div class="ng-scope md-table-pagination ng-isolate-scope simple-grid-pagination" aria-hidden="false" ng-if="ngDataPagination">';
+            template += '<div class="ng-scope md-table-pagination ng-isolate-scope simple-grid-pagination" aria-hidden="false" ng-if="ngDataPagination" ng-show="ngDataLoading || ngDataList.length">';
             template += '  <div class="limit-select ng-scope">';
             template += '    <div class="label ng-binding">Rows per page:</div>';
             template += '    <md-select aria-label="rows per page selection" class="md-table-select" ng-model="pagination.selectLength" ng-change="pagination.setSelectLength()">';
@@ -247,6 +257,11 @@
             template += '      <md-icon>keyboard_arrow_right</md-icon>';
             template += '    </button>';
             template += '  </div>';
+            template += '</div>';
+
+            template += '<div class="md-no-results" layout="column" layout-align="center center" ng-show="!ngDataLoading && !ngDataList.length">';
+            template += '  <md-icon class="material-icons">{{ngDataEmptyIcon}}</md-icon>';
+            template += '  <p class="md-body-1">{{ngDataEmptyText}}</p>';
             template += '</div>';
             $this.render(template);
           }
