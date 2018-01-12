@@ -83,6 +83,12 @@ angular.module('Requisition', [
 </simple-grid>
 ```
 
+## Stylesheets
+Also make sure to import the stylesheets within your application. You can use the @import as this:
+```
+@import 'simple-grid-material/dist/ng-simple-grid.scss';
+```
+
 ## Parameters
 
 | Name          | Type          | Dinamic | Mandatory | Description                                                  |
@@ -107,3 +113,7 @@ $ npm run build
 ## Metrics
 
 [![Throughput Graph](https://graphs.waffle.io/miamarti/simpleGridMaterial/throughput.svg)](https://waffle.io/miamarti/simpleGridMaterial/metrics/throughput)
+
+## Thanks and mentions
+This project was inspired by Daniel Nagy, the styling and overall layout was based on his md-data-table.
+You can find his project on https://github.com/daniel-nagy/md-data-table.

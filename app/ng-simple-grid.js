@@ -187,7 +187,7 @@
             return [].map.call(elmt[0].querySelectorAll('header column'), function(data) {
               var sortable = '<md-icon>{{getStatusSortable(\'' + data.innerHTML + '\')}}</md-icon>';
               var column = '';
-              column += '<th md-column class="md-column ng-scope ng-isolate-scope" ' + JSON.stringify(data.dataset).replace(/{"/gi, '').replace(/":/gi, '=').replace(/}/gi, ' ') + '>';
+              column += '<th class="md-column ng-scope ng-isolate-scope" ' + JSON.stringify(data.dataset).replace(/{"/gi, '').replace(/":/gi, '=').replace(/}/gi, ' ') + '>';
               column += data.dataset.sortable ? '<div style="cursor: pointer;" ng-click="pagination.sortable(\'' + data.innerHTML + '\')"><md-icon>sort</md-icon>' + data.innerHTML + sortable + '</div>' : data.innerHTML;
               column += '</th>';
               return column;
@@ -200,9 +200,9 @@
            */
           getColumnsBody: function() {
             var line = '';
-            line += '<tr md-row md-select="item" class="md-row ng-scope ng-isolate-scope md-clickable" aria-disabled="false" ng-repeat="$line in ngDataList" ng-if="!$line.deleted">';
+            line += '<tr md-select="item" class="md-row ng-scope ng-isolate-scope md-clickable" aria-disabled="false" ng-repeat="$line in ngDataList" ng-if="!$line.deleted">';
             line += [].map.call(elmt[0].querySelectorAll('list column'), function(data) {
-              var column = '<td md-cell class="md-cell ng-scope md-clickable" role="button" tabindex="0" ' + (!data.dataset.disabledClick ? 'ng-click="ngDataClick($index, $line)"' : '') + '>';
+              var column = '<td class="md-cell ng-scope md-clickable" role="button" tabindex="0" ' + (!data.dataset.disabledClick ? 'ng-click="ngDataClick($index, $line)"' : '') + '>';
               column += data.dataset.bind ? '{{$line.' + data.dataset.bind + '}}' : data.innerHTML;
               column += '</td>';
               return column;
@@ -218,33 +218,33 @@
           setTemplate: function() {
             var template = '';
             template += '<md-table-container>'
-            template += '<table class="md-data-table ng-pristine ng-untouched ng-valid md-table ng-isolate-scope ng-not-empty" md-table md-progress="false" multiple="true" aria-invalid="false">';
-            template += '  <thead ng-show="true" md-head class="md-head ng-isolate-scope">';
-            template += '    <tr md-row class="md-row">';
-            template += '      ' + $this.getColumnsHeader();
-            template += '    </tr>';
-            template += '  </thead>';
-            template += '  <tbody md-body class="md-body">';
-            template += '    ' + $this.getColumnsBody();
-            template += '  </tbody>';
-            template += '</table>';
+            template += '  <table class="md-data-table ng-pristine ng-untouched ng-valid md-table ng-isolate-scope ng-not-empty" multiple="true" aria-invalid="false">';
+            template += '    <thead class="md-head ng-isolate-scope">';
+            template += '      <tr class="md-row">';
+            template += '        ' + $this.getColumnsHeader();
+            template += '      </tr>';
+            template += '    </thead>';
+            template += '    <tbody class="md-body">';
+            template += '      ' + $this.getColumnsBody();
+            template += '    </tbody>';
+            template += '  </table>';
             template += '</md-table-container>'
 
-            template += '<div class="ng-scope md-table-pagination ng-isolate-scope simple-grid-pagination" aria-hidden="false" style="" ng-if="ngDataPagination">';
+            template += '<div class="ng-scope md-table-pagination ng-isolate-scope simple-grid-pagination" aria-hidden="false" ng-if="ngDataPagination">';
             template += '  <div class="limit-select ng-scope">';
             template += '    <div class="label ng-binding">Rows per page:</div>';
-            template += '    <md-select class="md-table-select" ng-model="pagination.selectLength" ng-change="pagination.setSelectLength()">';
-            template += '      <md-option ng-repeat="opt in pagination.length" ng-value="opt.value">';
+            template += '    <md-select aria-label="rows per page selection" class="md-table-select" ng-model="pagination.selectLength" ng-change="pagination.setSelectLength()">';
+            template += '      <md-option id="{{opt.value}}-page" ng-repeat="opt in pagination.length" ng-value="opt.value">';
             template += '        {{opt.label}}';
             template += '      </md-option>';
             template += '    </md-select>';
             template += '  </div>';
             template += '  <div class="buttons">';
             template += '    <button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Previous" ng-click="pagination.previous()" ng-disabled="!pagination.page">';
-            template += '      <md-icon md-svg-icon="navigate-before.svg" class="ng-scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg></md-icon>';
+            template += '      <md-icon>keyboard_arrow_left</md-icon>';
             template += '    </button>';
             template += '    <button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Next" ng-click="pagination.next()" ng-disabled="!ngDataPaginationEnabled()">';
-            template += '      <md-icon md-svg-icon="navigate-next.svg" class="ng-scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></md-icon>';
+            template += '      <md-icon>keyboard_arrow_right</md-icon>';
             template += '    </button>';
             template += '  </div>';
             template += '</div>';
