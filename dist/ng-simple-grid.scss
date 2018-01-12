@@ -454,6 +454,10 @@ table.md-table {
     color: rgba(0, 0, 0, 0.87);
     font-size: 13px;
     border-top: 1px rgba(0, 0, 0, 0.12) solid;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
     &.md-numeric md-select {
       -webkit-justify-content: flex-end;
       -ms-flex-pack: end;
