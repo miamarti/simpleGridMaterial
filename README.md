@@ -65,9 +65,9 @@ angular.module('Requisition', [
   <list>
     <column data-bind="date"></column>
     <column data-bind="submission_id"></column>
-    <column data-bind="submitter"></column>
+    <column data-bind="submitter" data-filter="uppercase'></column>
     <column data-bind="supplier_name"></column>
-    <column data-bind="amount"></column>
+    <column data-bind="amount" data-filter="currency: 'USD '"></column>
     <column></column>
     <column data-disabled-click="true">
       <div class="list-action">

@@ -205,8 +205,9 @@
             var line = '';
             line += '<tr md-select="item" class="md-row ng-scope ng-isolate-scope md-clickable" aria-disabled="false" ng-repeat="$line in ngDataList" ng-if="!$line.deleted">';
             line += [].map.call(elmt[0].querySelectorAll('list column'), function(data) {
+              var filter = data.dataset.filter ? ' | ' + data.dataset.filter : '';
               var column = '<td class="md-cell ng-scope md-clickable" role="button" tabindex="0" ' + (!data.dataset.disabledClick ? 'ng-click="ngDataClick($index, $line)"' : '') + '>';
-              column += data.dataset.bind ? '<abbr title="{{$line.' + data.dataset.bind + '}}">{{$line.' + data.dataset.bind + '}}</abbr>' : data.innerHTML;
+              column += data.dataset.bind ? '<abbr title="{{$line.' + data.dataset.bind + filter + '}}">{{$line.' + data.dataset.bind + filter + '}}</abbr>' : data.innerHTML;
               column += '</td>';
               return column;
             }).join('');
