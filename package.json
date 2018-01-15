@@ -1,6 +1,6 @@
 {
   "name": "simple-grid-material",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Simple Grid Angular Material",
   "main": "dist/index.js",
   "author": "Miller Augusto S. Martins <miller.augusto@gmail.com>",
@@ -24,6 +24,7 @@
     "url": "https://github.com/miamarti/simpleGridMaterial.git"
   },
   "files": [
+    "dist/ng-simple-grid.js",
     "dist/*.scss"
   ],
   "keywords": [
