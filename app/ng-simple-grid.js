@@ -37,7 +37,7 @@
 
           this.fnEvent = fnEvent;
           this.length = length;
-          this.selectLength = length && length.length >0 ?
+          this.selectLength = length && length.length > 0 ?
                               length[0].value:
                               ($scope.ngDataList ? $scope.ngDataList.length : 0);
           this.selectLength = $scope.ngDataDefaultLength && !Number.isNaN($scope.ngDataDefaultLength) ?
@@ -86,6 +86,7 @@
            * [setSelectLength]
            */
           setSelectLength: function() {
+            this.page = 0;
             this.runFnEvent('change-length');
             $scope.$ctrl.changePageSize(this.fnEvent.length);
           },
