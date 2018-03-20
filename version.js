@@ -1,4 +1,4 @@
 module.exports = {
-  'current': '1.4.1',
-  'new': '1.4.1'
+  'current': '1.5.0',
+  'new': '1.5.0'
 };
