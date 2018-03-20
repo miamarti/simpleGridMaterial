@@ -9,7 +9,7 @@ Grid Component for Angular Material
   <a href="https://gitter.im/miamarti/simpleGridMaterial?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge" target="_blank"><img src="https://badges.gitter.im/Join%20Chat.svg"></a>
   <a href="https://gitlab.com/miamarti/simpleGridMaterial" target="_blank"><img src="https://img.shields.io/badge/gitlab-simpleGridMaterial-yellow.svg"></a>
   <img src="https://img.shields.io/badge/simpleGridMaterial-release-green.svg">
-  <img src="https://img.shields.io/badge/version-1.2.0-blue.svg">
+  <img src="https://img.shields.io/badge/version-1.4.2-blue.svg">
   <img src="https://img.shields.io/bower/v/bootstrap.svg">
   <img src="https://img.shields.io/github/license/mashape/apistatus.svg">
   <a href="https://github.com/miamarti/simpleGridMaterial/tarball/master"><img src="https://img.shields.io/github/downloads/atom/atom/latest/total.svg"></a>
@@ -35,7 +35,7 @@ require('angular');
 angular.module('Requisition', [
   require('angular-animate'),
   require('angular-material'),
-  require('simple-grid-material') //Component Injection
+  require('simple-grid-material') // Component Injection
 ])
 ```
 
@@ -82,6 +82,19 @@ angular.module('Requisition', [
   </list>
 
 </simple-grid>
+```
+##### Pagination
+You can use an object pattern like shown bellow. Make sure to add the functions next, previous and changePageSize to your controller so they can work. The simple grid don't really need to know about cursor pages or similar, it just need to be aware of the quantity of lines per page, in which page state it is/should be, and if there is more pages to show or not (ng-data-pagination-enabled).
+```
+  ctrl.paginationObject = {
+    pageSize: 25,
+    pageIndex: 0,
+    cursor: '',
+    cursorList: [''],
+    paginationEnabled: function() {
+      return ctrl.paginationObject.cursor;
+    }
+  }
 ```
 
 ## Stylesheets
