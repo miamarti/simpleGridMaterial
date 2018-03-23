@@ -191,7 +191,7 @@
             return [].map.call(elmt[0].querySelectorAll('header column'), function(data) {
               var sortable = '<md-icon>{{getStatusSortable(\'' + data.innerHTML + '\')}}</md-icon>';
               var column = '';
-              column += '<th' + JSON.stringify(data.dataset).replace(/{"/gi, '').replace(/":/gi, '=').replace(/}/gi, ' ') + '>';
+              column += '<th ' + JSON.stringify(data.dataset).replace(/{"/gi, '').replace(/":/gi, '=').replace(/}/gi, ' ') + '>';
               column += data.dataset.sortable ? '<div ng-click="pagination.sortable(\'' + data.innerHTML + '\')"><md-icon>sort</md-icon>' + data.innerHTML + sortable + '</div>' : data.innerHTML;
               column += '</th>';
               return column;
