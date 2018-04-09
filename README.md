@@ -68,7 +68,7 @@ angular.module('Requisition', [
     <column data-bind="submitter" data-filter="uppercase'></column>
     <column data-bind="supplier_name"></column>
     <column data-bind="amount" data-filter="currency: 'USD '"></column>
-    <column></column>
+    <column data-bind="number"></column>
     <column data-disabled-click="true">
       <div class="list-action">
         <button ng-click="$ctrl.clickPoc(1)" type="button" aria-label="content_copy">
@@ -118,6 +118,10 @@ Also make sure to import the stylesheets within your application. You can use th
 | ng-data-loading  | Boolean | true | false | Controls when to show and hide progress linear bar                     |
 | ng-data-empty-icon | String | false | false | Material icon font name to be displayed on no results page           |
 | ng-data-empty-text | String | false | false | Text to be displayed right below icon for no results page            |
+| data-style (header)| string | false | false | Equivalent to style attribute of HTML, is repassed to the th elements |
+| data-style (header)| boolean | false | false | Flag for sortable column item |
+| data-bind (list) | string | false | false | What element value to bind to from the ng-data-list one |
+| data-template (list) | string | false | false | A name of string like property on the ng-data-ctrl to bind as HTML for that columns |
 
 
 ## Development

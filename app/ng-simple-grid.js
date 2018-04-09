@@ -206,9 +206,15 @@
             var line = '';
             line += '<tr id="row{{$index}}" class="clickable" md-select="item" aria-disabled="false" ng-repeat="$line in ngDataList" ng-if="!$line.deleted">';
             line += [].map.call(elmt[0].querySelectorAll('list column'), function(data) {
-              var filter = data.dataset.filter ? ' | ' + data.dataset.filter : '';
-              var column = '<td id="row{{$index}}.' + data.dataset.bind + '"role="button" tabindex="0"' + (!data.dataset.disabledClick ? 'ng-click="ngDataClick($index, $line)"' : '') + '>';
-              column += data.dataset.bind ? '<abbr title="{{$line.' + data.dataset.bind + filter + '}}">{{$line.' + data.dataset.bind + filter + '}}</abbr>' : data.innerHTML;
+              var filter = data.dataset.filter ? ' | ' + data.dataset.filter : '', column;
+              if (data.dataset.bind) {
+                column = '<td id="row{{$index}}.' + data.dataset.bind + ' "role="button" tabindex="0"' + (!data.dataset.disabledClick ? 'ng-click="ngDataClick($index, $line)"' : '') + '>';
+                column += '<abbr title="{{$line.' + data.dataset.bind + filter + '}}">{{$line.' + data.dataset.bind + filter + '}}</abbr>';
+                column += '</td>';
+                return column;
+              }
+              column = '<td id="row{{$index}}.actions" "role="button" tabindex="0"' + (!data.dataset.disabledClick ? 'ng-click="ngDataClick($index, $line)"' : '') + '>';
+              column += data.dataset.template ? $scope.$ctrl[data.dataset.template] : data.innerHTML;
               column += '</td>';
               return column;
             }).join('');
@@ -258,7 +264,7 @@
             template += '    </button>';
             template += '  </div>';
             template += '</div>';
-            
+
             template += '<div class="md-no-results" layout="column" layout-align="center center" ng-show="!ngDataLoading && !ngDataList.length">';
             template += '  <md-icon class="material-icons">{{ngDataEmptyIcon}}</md-icon>';
             template += '  <p class="md-body-1">{{ngDataEmptyText}}</p>';
