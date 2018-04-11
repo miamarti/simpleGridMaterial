@@ -10,7 +10,7 @@
       font-family: Roboto;
       font-size: 12px;
       font-weight: bold;
-      padding: 0px 28px; 
+      padding: 0px 28px;
       position: sticky;
       text-align: left;
       top: 0px;
@@ -48,7 +48,7 @@
       font-family: Roboto;
       font-size: 13px;
       font-weight: normal;
-      padding: 0px 28px; 
+      padding: 0px 28px;
       &:first-child {
         padding-left: 24px;
       }
@@ -65,12 +65,19 @@
   }
 }
 
+.sticky-helper {
+  height: 56px;
+}
+
 .simple-grid-pagination {
+  &.sticky {
+    bottom: 0px;
+    position: fixed;
+  }
   background-color: #FFFFFF;
   border-top: 1px rgba(0, 0, 0, 0.12) solid;
-  bottom: 0px;
   height: 56px;
-  position: sticky;
+  position: relative;
   z-index: 2;
   div, p {
     color: rgba(0, 0, 0, 0.54);
