@@ -1,31 +1,35 @@
-(function (window, angular) {
+(function(window, angular) {
+
+  var handleSticky = function(elmt) {
+    var element = elmt.querySelector('.simple-grid-pagination'),
+      helper = elmt.querySelector('#sticky-helper');
+
+    if (elmt.scrollTop + elmt.offsetHeight <= helper.offsetTop + 56) {
+      element && element.classList.add('sticky');
+      helper && helper.classList.add('sticky-helper');
+    } else {
+      element && element.classList.remove('sticky');
+      helper && helper.classList.remove('sticky-helper');
+    }
+  };
 
   angular.module('ngSimpleGrid', ['ng'])
 
-    .directive('scroll', [function () {
+    .directive('scroll', [function() {
 
       'ngInject';
 
       return {
         restrict: 'A',
-        link: function (scope, elmt) {
-          elmt.on('scroll', function () {
-            var element = elmt[0].querySelector('.simple-grid-pagination');
-            var helper = elmt[0].querySelector('#sticky-helper');
-
-            if (elmt[0].scrollTop + elmt[0].offsetHeight <= helper.offsetTop + 56) {
-              element.classList.add('sticky');
-              helper.classList.add('sticky-helper');
-            } else {
-              element.classList.remove('sticky');
-              helper.classList.remove('sticky-helper');
-            }
+        link: function(scope, elmt) {
+          elmt.on('scroll', function() {
+            handleSticky(elmt[0]);
           });
         }
       }
     }])
 
-    .directive('simpleGrid', ['$compile', '$document', '$timeout', function ($compile, $document, $timeout) {
+    .directive('simpleGrid', ['$compile', '$document', '$timeout', function($compile, $document, $timeout) {
 
       'ngInject';
 
@@ -48,30 +52,22 @@
           $ctrl: '=ngDataCtrl'
         },
         template: '<ng-transclude></ng-transclude>',
-        link: function ($scope, elmt) {
+        link: function($scope, elmt) {
 
-          $scope.$watch('ngDataList', function () {
+          $scope.$watch('ngDataList', function() {
             var elmt = $document[0].querySelector('[scroll]');
-            var element = $document[0].querySelector('.simple-grid-pagination');
-            var helper = $document[0].querySelector('#sticky-helper');
 
-            $timeout(function () {
-              if (elmt.scrollTop + elmt.offsetHeight <= helper.offsetTop + 56) {
-                element.classList.add('sticky');
-                helper.classList.add('sticky-helper');
-              } else {
-                element.classList.remove('sticky');
-                helper.classList.remove('sticky-helper');
-              }
+            $timeout(function() {
+              handleSticky(elmt);
             }, 10);
           });
 
-          var Pagination = function (dataLength, fnEvent) {
+          var Pagination = function(dataLength, fnEvent) {
             var _len = (dataLength ?
               dataLength.split(',') :
               ($scope.ngDataList ? $scope.ngDataList.length : 0));
 
-            var length = [].map.call(_len, function (line) {
+            var length = [].map.call(_len, function(line) {
               return { value: line.trim(), label: line.trim() };
             });
 
@@ -91,7 +87,7 @@
             /**
                * [Previous]
                */
-            previous: function () {
+            previous: function() {
               this.page--;
               this.runFnEvent('previous');
               $scope.$ctrl.previous();
@@ -100,7 +96,7 @@
             /**
                * [Next]
                */
-            next: function () {
+            next: function() {
               this.page++;
               this.runFnEvent('next');
               $scope.$ctrl.next();
@@ -109,7 +105,7 @@
             /**
                * [Run Fn Event]
                */
-            runFnEvent: function (event) {
+            runFnEvent: function(event) {
               var sortableMap = {};
 
               for (var key in this.sortableMap) {
@@ -126,7 +122,7 @@
             /**
                * [setSelectLength]
                */
-            setSelectLength: function () {
+            setSelectLength: function() {
               this.page = 0;
               this.runFnEvent('change-length');
               $scope.$ctrl.changePageSize(this.fnEvent.length);
@@ -137,8 +133,8 @@
                * @param  {[String]} str
                * @return {[String]}
                */
-            getCamelCase: function (str) {
-              return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (letter, index) {
+            getCamelCase: function(str) {
+              return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
                 return index === 0 ? letter.toLowerCase() : letter.toUpperCase();
               }).replace(/\s+/g, '');
             },
@@ -148,7 +144,7 @@
                * @param  {[type]} column [description]
                * @return {[type]}        [description]
                */
-            sortable: function (column) {
+            sortable: function(column) {
               if ($scope.ngDataSingleOrdering === 'true') {
                 var statusTmp = { name: column, value: this.sortableMap[column] };
 
@@ -170,8 +166,8 @@
                * Main method
                * @return {[type]} [description]
                */
-            main: function () {
-              $this.init(function () {
+            main: function() {
+              $this.init(function() {
                 $this.load($this.addEventListeners);
               });
             },
@@ -181,7 +177,7 @@
                * @param Function
                * @return
                */
-            init: function (callback) {
+            init: function(callback) {
               $scope.pagination = new Pagination($scope.ngDataLength, $scope.ngDataPaginationEvents);
               callback && callback();
             },
@@ -191,7 +187,7 @@
                * @param Function
                * @return
                */
-            load: function (callback) {
+            load: function(callback) {
               $this.setTemplate();
               callback && callback();
             },
@@ -201,7 +197,7 @@
                * @param
                * @return
                */
-            addEventListeners: function () {
+            addEventListeners: function() {
               $scope.getStatusSortable = $this.getStatusSortable.bind($this);
             },
 
@@ -210,7 +206,7 @@
                * @param  {[type]} template [description]
                * @return {[type]}          [description]
                */
-            render: function (template) {
+            render: function(template) {
               $compile(elmt.html(template).contents())($scope);
             },
 
@@ -219,7 +215,7 @@
                * @param  {[String]} columnName
                * @return {[String]}
                */
-            getStatusSortable: function (columnName) {
+            getStatusSortable: function(columnName) {
               if ($scope.pagination.sortableMap.hasOwnProperty(columnName)) {
                 return $scope.pagination.sortableMap[columnName] ? 'arrow_drop_down' : 'arrow_drop_up';
               }
@@ -229,8 +225,8 @@
                * Get columns header
                * @return {[String]} [Template Header]
                */
-            getColumnsHeader: function () {
-              return [].map.call(elmt[0].querySelectorAll('header column'), function (data) {
+            getColumnsHeader: function() {
+              return [].map.call(elmt[0].querySelectorAll('header column'), function(data) {
                 var sortable = '<md-icon>{{getStatusSortable(\'' + data.innerHTML + '\')}}</md-icon>';
                 var column = '';
 
@@ -245,11 +241,11 @@
                * Get columns body
                * @return {[String]} [Template Header]
                */
-            getColumnsBody: function () {
+            getColumnsBody: function() {
               var line = '';
 
               line += '<tr id="row{{$index}}" class="clickable" md-select="item" aria-disabled="false" ng-repeat="$line in ngDataList" ng-if="!$line.deleted">';
-              line += [].map.call(elmt[0].querySelectorAll('list column'), function (data) {
+              line += [].map.call(elmt[0].querySelectorAll('list column'), function(data) {
                 var filter = data.dataset.filter ? ' | ' + data.dataset.filter : '', column;
 
                 if (data.dataset.bind) {
@@ -271,7 +267,7 @@
                * Set template
                * @return {[type]} [description]
                */
-            setTemplate: function () {
+            setTemplate: function() {
               var template = '';
 
               template += '<table id="simple-grid-table" class="simple-grid" ng-show="ngDataLoading || ngDataList.length" multiple="true" aria-invalid="false">';
