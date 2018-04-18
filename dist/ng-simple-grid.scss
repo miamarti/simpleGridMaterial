@@ -27,8 +27,11 @@
     height: 5px;
     th {
       border-bottom: 1px rgba(0, 0, 0, 0.12) solid;
+      overflow: hidden;
       padding: 0px !important;
+      text-overflow: ellipsis;
       top: 51px;
+      white-space: nowrap;
       md-progress-linear {
         top: 0px !important;
       }
@@ -48,7 +51,10 @@
       font-family: Roboto;
       font-size: 13px;
       font-weight: normal;
+      overflow: hidden;
       padding: 0px 28px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       &:first-child {
         padding-left: 24px;
       }

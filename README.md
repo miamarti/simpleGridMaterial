@@ -113,6 +113,12 @@ Also make sure to import the stylesheets within your application. You can use th
 @import 'simple-grid-material/dist/ng-simple-grid.scss';
 ```
 
+## Font family
+Make sure to import the Roboto font family to your project as well, you can use the snippet below for that:
+```
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+```
+
 ## Parameters
 
 | Name          | Type          | Dinamic | Mandatory | Description                                                  |
