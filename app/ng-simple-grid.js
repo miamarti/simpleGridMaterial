@@ -23,10 +23,12 @@
         restrict: 'A',
         link: function(scope, elmt) {
           elmt.on('scroll', function() {
-            handleSticky(elmt[0]);
+            if (elmt[0].querySelector('.simple-grid-pagination')) {
+              handleSticky(elmt[0]);
+            }
           });
         }
-      }
+      };
     }])
 
     .directive('simpleGrid', ['$compile', '$document', '$timeout', function($compile, $document, $timeout) {
