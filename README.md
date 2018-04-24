@@ -83,6 +83,16 @@ angular.module('Requisition', [
 
 </simple-grid>
 ```
+You can also pass Angular Material directives as inner columns HTML, by commenting and adding a `grid` string close to the comments syntax like this: 
+```
+<!--grid <div class="list-action">
+  <md-button id="sample" class="md-icon-button" ng-click="$ctrl.action($event)">
+      <md-icon>info</md-icon>
+  </md-button>
+</div> grid-->
+```
+This is a workaround to easily pass directives so that they can be compiled only once, with the proper scope. You can also use the `ng-data-template` strategy, but it is less comfortable.
+
 #### Pagination
 You can use an object pattern like shown bellow. Make sure to add the functions next, previous and changePageSize to your controller so they can work. The simple grid don't really need to know about cursor pages or similar, it just need to be aware of the quantity of lines per page, in which page state it is/should be, and if there is more pages to show or not (ng-data-pagination-enabled).
 ```
@@ -137,7 +147,7 @@ Make sure to import the Roboto font family to your project as well, you can use 
 | data-style (header)| string | false | false | Equivalent to style attribute of HTML, is repassed to the th elements |
 | data-style (header)| boolean | false | false | Flag for sortable column item |
 | data-bind (list) | string | false | false | What element value to bind to from the ng-data-list one |
-| data-template (list) | string | false | false | A name of string like property on the ng-data-ctrl to bind as HTML for that columns |
+| data-template (list) | string | false | false | A name of string like property on the ng-data-ctrl to bind as HTML for that column |
 
 
 ## Development

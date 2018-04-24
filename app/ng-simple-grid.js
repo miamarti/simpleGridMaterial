@@ -256,8 +256,8 @@
                   column += '</td>';
                   return column;
                 }
-                column = '<td id="row{{$index}}.actions" "role="button" tabindex="0"' + (!data.dataset.disabledClick ? 'ng-click="ngDataClick($index, $line)"' : '') + '>';
-                column += data.dataset.template ? $scope.$ctrl[data.dataset.template] : data.innerHTML;
+                column = '<td id="row{{$index}}.actions" role="button" tabindex="0"' + (!data.dataset.disabledClick ? 'ng-click="ngDataClick($index, $line)"' : '') + '>';
+                column += data.dataset.template ? $scope.$ctrl[data.dataset.template] : data.innerHTML.replace('<!--grid', '').replace('grid-->', '');
                 column += '</td>';
                 return column;
               }).join('');
