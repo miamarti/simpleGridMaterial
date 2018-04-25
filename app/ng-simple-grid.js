@@ -186,7 +186,9 @@
              * @param {Function} callback
              */
             init: function(callback) {
-              $scope.pagination = new Pagination($scope.ngDataLength, $scope.ngDataPaginationEvents);
+              if ($scope.ngDataPagination) {
+                $scope.pagination = new Pagination($scope.ngDataLength, $scope.ngDataPaginationEvents);
+              }
               callback && callback();
             },
 
@@ -204,7 +206,9 @@
              */
             addEventListeners: function() {
               $scope.getStatusSortable = $this.getStatusSortable.bind($this);
-              $scope.ngDataPageReset = $scope.pagination.resetPage.bind($scope.pagination);
+              if ($scope.ngDataPagination) {
+                $scope.ngDataPageReset = $scope.pagination.resetPage.bind($scope.pagination);
+              }
             },
 
             /**
