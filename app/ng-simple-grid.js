@@ -45,6 +45,7 @@
           ngDataPagination: '=ngDataPagination',
           ngDataPaginationEnabled: '=ngDataPaginationEnabled',
           ngDataPaginationEvents: '=ngDataPaginationEvents',
+          ngDataPageReset: '=ngDataPageReset',
           ngDataLength: '@ngDataLength',
           ngDataSingleOrdering: '@ngDataSingleOrdering',
           ngDataDefaultLength: '=ngDataDefaultLength',
@@ -87,8 +88,8 @@
           Pagination.prototype = {
 
             /**
-               * [Previous]
-               */
+             * Previous
+             */
             previous: function() {
               this.page--;
               this.runFnEvent('previous');
@@ -96,8 +97,8 @@
             },
 
             /**
-               * [Next]
-               */
+             * Next
+             */
             next: function() {
               this.page++;
               this.runFnEvent('next');
@@ -105,8 +106,16 @@
             },
 
             /**
-               * [Run Fn Event]
-               */
+             * Reset page
+             */
+            resetPage: function() {
+              this.page = 0;
+            },
+
+            /**
+             * Run Fn Event
+             * @param {string} event
+             */
             runFnEvent: function(event) {
               var sortableMap = {};
 
@@ -122,8 +131,8 @@
             },
 
             /**
-               * [setSelectLength]
-               */
+             * Set page length
+             */
             setSelectLength: function() {
               this.page = 0;
               this.runFnEvent('change-length');
@@ -131,10 +140,10 @@
             },
 
             /**
-               * To Camel Case
-               * @param  {[String]} str
-               * @return {[String]}
-               */
+             * To Camel Case
+             * @param  {string} str
+             * @return {string}
+             */
             getCamelCase: function(str) {
               return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
                 return index === 0 ? letter.toLowerCase() : letter.toUpperCase();
@@ -142,10 +151,9 @@
             },
 
             /**
-               * [sort]
-               * @param  {[type]} column [description]
-               * @return {[type]}        [description]
-               */
+             * Applies sort to the list based on column
+             * @param  {string} column
+             */
             sortable: function(column) {
               if ($scope.ngDataSingleOrdering === 'true') {
                 var statusTmp = { name: column, value: this.sortableMap[column] };
@@ -165,9 +173,8 @@
           var $this = {
 
             /**
-               * Main method
-               * @return {[type]} [description]
-               */
+             * Main method
+             */
             main: function() {
               $this.init(function() {
                 $this.load($this.addEventListeners);
@@ -175,48 +182,44 @@
             },
 
             /**
-               * Init method
-               * @param Function
-               * @return
-               */
+             * Init method
+             * @param {Function} callback
+             */
             init: function(callback) {
               $scope.pagination = new Pagination($scope.ngDataLength, $scope.ngDataPaginationEvents);
               callback && callback();
             },
 
             /**
-               * Load method
-               * @param Function
-               * @return
-               */
+             * Load method
+             * @param {Function} callback
+             */
             load: function(callback) {
               $this.setTemplate();
               callback && callback();
             },
 
             /**
-               * Add EventListeners method
-               * @param
-               * @return
-               */
+             * Add EventListeners method
+             */
             addEventListeners: function() {
               $scope.getStatusSortable = $this.getStatusSortable.bind($this);
+              $scope.ngDataPageReset = $scope.pagination.resetPage.bind($scope.pagination);
             },
 
             /**
-               * Render method
-               * @param  {[type]} template [description]
-               * @return {[type]}          [description]
-               */
+             * Render method
+             * @param  {string} template
+             */
             render: function(template) {
               $compile(elmt.html(template).contents())($scope);
             },
 
             /**
-               * Get Status Sortable
-               * @param  {[String]} columnName
-               * @return {[String]}
-               */
+             * Get Status Sortable
+             * @param  {string} columnName
+             * @return {string}
+             */
             getStatusSortable: function(columnName) {
               if ($scope.pagination.sortableMap.hasOwnProperty(columnName)) {
                 return $scope.pagination.sortableMap[columnName] ? 'arrow_drop_down' : 'arrow_drop_up';
@@ -224,9 +227,9 @@
             },
 
             /**
-               * Get columns header
-               * @return {[String]} [Template Header]
-               */
+             * Get columns header
+             * @return {string} [Template Header]
+             */
             getColumnsHeader: function() {
               return [].map.call(elmt[0].querySelectorAll('header column'), function(data) {
                 var sortable = '<md-icon>{{getStatusSortable(\'' + data.innerHTML + '\')}}</md-icon>';
@@ -240,9 +243,9 @@
             },
 
             /**
-               * Get columns body
-               * @return {[String]} [Template Header]
-               */
+             * Get columns body
+             * @return {string} [Template Header]
+             */
             getColumnsBody: function() {
               var line = '';
 
@@ -266,9 +269,8 @@
             },
 
             /**
-               * Set template
-               * @return {[type]} [description]
-               */
+             * Set list template
+             */
             setTemplate: function() {
               var template = '';
 

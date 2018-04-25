@@ -47,6 +47,7 @@ angular.module('Requisition', [
   ng-data-ctrl="listCtrl"
   ng-data-single-ordering="false"
   ng-data-pagination="true"
+  ng-data-page-reset="listCtrl.reset"
   ng-data-length="25, 50, 75, 100, 150, 250"
   ng-data-pagination-enabled="listCtrl.paginationEnabled"
   ng-data-pagination-events="listCtrl.paginationEvents"
@@ -138,6 +139,7 @@ Make sure to import the Roboto font family to your project as well, you can use 
 | ng-data-ctrl  | Object        | true    | true      | Controller that will be transferred to the component's internal context |
 | ng-data-single-ordering | Boolean | false | false | When true only allows one field to be sorted at a time         |
 | ng-data-pagination      | Boolean | false | false | When true enables paging                                       |
+| ng-data-page-reset      | Function | true | false | Exposes a internal page reset function to the variable passed trough, can be called to reset page to 0. |
 | ng-data-length          | String('25, 50, 75, 100, 150, 250') | false | false | Reports the number of records options |
 | ng-data-pagination-enabled | Function | true | true | Function that returns a Boolean allowing pagination to work  |
 | ng-data-pagination-events  | Function | true | true | Function that runs whenever you scroll through pagination    |
