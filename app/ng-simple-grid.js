@@ -4,6 +4,10 @@
     var element = elmt.querySelector('.simple-grid-pagination'),
       helper = elmt.querySelector('#sticky-helper');
 
+    if (!element || !helper) {
+      return;
+    }
+
     if (elmt.scrollTop + elmt.offsetHeight <= helper.offsetTop + 56) {
       element && element.classList.add('sticky');
       helper && helper.classList.add('sticky-helper');

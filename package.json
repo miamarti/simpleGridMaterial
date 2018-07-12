@@ -1,6 +1,6 @@
 {
   "name": "simple-grid-material",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "description": "Simple Grid Angular Material",
   "main": "dist/index.js",
   "author": "Miller Augusto S. Martins <miller.augusto@gmail.com>",
@@ -9,9 +9,11 @@
   ],
   "dependencies": {
     "angular": "1.5.x",
+    "angular-animate": "1.5.x",
+    "angular-aria": "1.5.x",
     "angular-material": "1.0.x",
-    "node-minify": "^2.4.0",
-    "replace": "^0.3.0"
+    "node-minify": "^3.1.0",
+    "replace": "^1.0.0"
   },
   "scripts": {
     "build": "node app/build.js"
