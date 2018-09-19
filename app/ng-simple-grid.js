@@ -262,12 +262,12 @@
                 var filter = data.dataset.filter ? ' | ' + data.dataset.filter : '', column;
 
                 if (data.dataset.bind) {
-                  column = '<td id="row{{$index}}.' + data.dataset.bind + ' "role="button" tabindex="0"' + (!data.dataset.disabledClick ? 'ng-click="ngDataClick($index, $line)"' : '') + '>';
+                  column = '<td id="row{{$index}}.' + data.dataset.bind + ' "role="button" ' + JSON.stringify(data.dataset).replace(/{"/gi, '').replace(/":/gi, '=').replace(/}/gi, ' ') + (!data.dataset.disabledClick ? 'ng-click="ngDataClick($index, $line)"' : '') + '>';
                   column += '<abbr title="{{$line.' + data.dataset.bind + filter + '}}">{{$line.' + data.dataset.bind + filter + '}}</abbr>';
                   column += '</td>';
                   return column;
                 }
-                column = '<td id="row{{$index}}.actions" role="button" tabindex="0"' + (!data.dataset.disabledClick ? 'ng-click="ngDataClick($index, $line)"' : '') + '>';
+                column = '<td id="row{{$index}}.actions" role="button" ' + JSON.stringify(data.dataset).replace(/{"/gi, '').replace(/":/gi, '=').replace(/}/gi, ' ') + (!data.dataset.disabledClick ? 'ng-click="ngDataClick($index, $line)"' : '') + '>';
                 column += data.dataset.template ? $scope.$ctrl[data.dataset.template] : data.innerHTML.replace('<!--grid', '').replace('grid-->', '');
                 column += '</td>';
                 return column;
