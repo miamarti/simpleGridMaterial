@@ -300,7 +300,7 @@
               template += '  </tbody>';
               template += '</table>';
 
-              template += '<div id="sticky-helper"><div>'
+              template += '<div id="sticky-helper"><div>';
 
               template += '<div class="simple-grid-pagination" layout="row" layout-align="end center" aria-hidden="false" ng-if="ngDataPagination" ng-show="ngDataLoading || ngDataList.length">';
               template += '  <div class="limit-select" layout="row" layout-align="center center">';
@@ -321,7 +321,7 @@
               template += '  </div>';
               template += '</div>';
 
-              template += '<div class="md-no-results" layout="column" layout-align="center center" ng-show="!ngDataLoading && !ngDataList.length">';
+              template += '<div class="simple-grid-no-results" layout="column" layout-align="center center" ng-show="!ngDataLoading && !ngDataList.length">';
               template += '  <md-icon class="material-icons">{{ngDataEmptyIcon}}</md-icon>';
               template += '  <p class="md-body-1">{{ngDataEmptyText}}</p>';
               template += '</div>';
